@@ -4,6 +4,9 @@ import android.content.ClipData;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,12 +21,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.minhthe.dell.demogallery.customAdapter.ListViewCustomAdapter;
+import com.minhthe.dell.demogallery.customAdapter.MyViewPagerAdapter;
 import com.minhthe.dell.demogallery.dto.ItemDrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
 
     String contentDrawer[] ={"Gallery", "Movie"};
@@ -35,12 +39,24 @@ public class MainActivity extends AppCompatActivity {
 
     String[] itemTab = {"List Movie","List Gallery"};
     android.app.ActionBar actionBar ;
+
+    //variable of viewPager:
+
+    ViewPager viewPage;
+    PagerAdapter pagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvMenuDrawer =(ListView) findViewById(R.id.lvMenuDrawer);
 
+
+
+        //relating with viewPager
+        viewPage = (ViewPager) findViewById(R.id.pager);
+        pagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
+        viewPage.setAdapter(pagerAdapter);
 // exercise : create tab
 //        actionBar = getActionBar();
 //
