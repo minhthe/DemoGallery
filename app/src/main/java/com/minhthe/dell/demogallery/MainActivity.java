@@ -1,5 +1,7 @@
 package com.minhthe.dell.demogallery;
 
+import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.content.ClipData;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,7 +10,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -38,13 +39,15 @@ public class MainActivity extends FragmentActivity {
     ActionBarDrawerToggle drawerToggle ;
 
     String[] itemTab = {"List Movie","List Gallery"};
-    android.app.ActionBar actionBar ;
 
     //variable of viewPager:
 
     ViewPager viewPage;
     PagerAdapter pagerAdapter;
 
+
+    //varaible actionBar
+    ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,34 @@ public class MainActivity extends FragmentActivity {
         viewPage = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPage.setAdapter(pagerAdapter);
+
+        //create a tab
+        actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        ActionBar.TabListener tabListener =  new ActionBar.TabListener(){
+
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+            }
+        };
+        for(int j = 0; j< 2; j++){
+            actionBar.addTab(actionBar.newTab().setText(itemTab[j]).setTabListener(tabListener));
+        }
+
+//        actionBar.setNavigationMode();
+
+
 // exercise : create tab
 //        actionBar = getActionBar();
 //
