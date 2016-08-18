@@ -65,10 +65,11 @@ public class MainActivity extends FragmentActivity {
         actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         ActionBar.TabListener tabListener =  new ActionBar.TabListener(){
+//action1 : click in the tab
 
             @Override
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-
+                viewPage.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -85,6 +86,20 @@ public class MainActivity extends FragmentActivity {
             actionBar.addTab(actionBar.newTab().setText(itemTab[j]).setTabListener(tabListener));
         }
 
+        //action2 : view page load and tab load
+        viewPage.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+            @Override
+            public void onPageSelected(int position) {
+                getActionBar().setSelectedNavigationItem(position);
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+                                         }
+        );
 //        actionBar.setNavigationMode();
 
 
@@ -99,8 +114,8 @@ public class MainActivity extends FragmentActivity {
 //        //đổ data và thằng lvMenuDrawer
 //        lvMenuDrawer.setAdapter(adapter);
 
-        // create list of ItemDrawer
-        List<ItemDrawer> itemDrawerList = new ArrayList<ItemDrawer>();
+                // create list of ItemDrawer
+                List < ItemDrawer > itemDrawerList = new ArrayList<ItemDrawer>();
         ItemDrawer item1 = new ItemDrawer(iconDrawer[0],contentDrawer[0]);
         ItemDrawer item2 = new ItemDrawer(iconDrawer[1],contentDrawer[1]);
         itemDrawerList.add(item1);
